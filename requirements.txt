@@ -1,0 +1,4 @@
+pyqt5
+vk_api
+Pillow
+playsound==1.2.2
