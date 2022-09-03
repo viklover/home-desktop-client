@@ -283,4 +283,6 @@ configs/tracks/*
 
 .idea/*
 
+*.exe
+
 !.gitkeep
