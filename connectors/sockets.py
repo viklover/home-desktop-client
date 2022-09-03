@@ -59,7 +59,9 @@ class SocketsConnector(BaseConnector):
     def init_connection(self):
         try:
             self.socket = socket.socket()
+            self.socket.settimeout(1.5)
             self.socket.connect(tuple(BaseConnector.SOCKET_CONFIG))
+            self.socket.settimeout(None)
 
             super().init_connection()
 
