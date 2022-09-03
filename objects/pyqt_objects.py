@@ -5,6 +5,8 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QFont, QPixmap
 from PyQt5.QtWidgets import QLabel
 
+from path import path_to
+
 
 class Label:
 
@@ -43,8 +45,8 @@ class Picture:
 
         if 'size' in config:
             self.size = config['size']
-        elif os.path.isfile(os.path.join("configs", "pictures", self.prepared_paths[0])):
-            self.size = [w, h] = Image.open(os.path.join("configs", "pictures", self.prepared_paths[0])).size
+        elif os.path.isfile(path_to("configs", "pictures", self.prepared_paths[0])):
+            self.size = [w, h] = Image.open(path_to("configs", "pictures", self.prepared_paths[0])).size
         else:
             self.size = [0, 0]
 
@@ -54,7 +56,7 @@ class Picture:
 
         for path in self.prepared_paths:
             self.prepared_pixmaps.append(
-                Picture.create_pixmap(os.path.join("configs", "pictures", path), self.size)
+                Picture.create_pixmap(path_to("configs", "pictures", path), self.size)
             )
 
         self.set_pixmap(self.prepared_pixmaps[0])

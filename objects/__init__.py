@@ -1,6 +1,7 @@
 
-import os
 import json
+
+from path import path_to
 
 from .pyqt_objects import Label, Picture
 
@@ -9,7 +10,7 @@ from .vobject import VObject
 
 
 class ObjectManager:
-    CONFIG = json.load(open(os.path.join(os.path.dirname(os.path.dirname(__file__)), "configs", "objects.json")))
+    CONFIG = json.load(open(path_to("configs", "objects.json")))
 
     OBJECT_TYPES = {
         'tobject': 'TObject',

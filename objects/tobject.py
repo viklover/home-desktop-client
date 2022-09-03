@@ -1,4 +1,3 @@
-import os
 
 from . import Label, Picture
 from .object import Object

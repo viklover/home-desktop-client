@@ -1,9 +1,10 @@
-import os
 import json
 import time
 import random
 
 from threading import Thread, Lock
+
+from path import path_to
 
 
 class BaseConnector:
@@ -45,7 +46,7 @@ class BaseConnector:
                     self.connector.connected = False
 
     def __init__(self, controller):
-        config = json.load(open(os.path.join(os.path.dirname(os.path.dirname(__file__)), "configs", "connectors.json")))
+        config = json.load(open(path_to("configs", "connectors.json")))
         BaseConnector.SOCKET_CONFIG = config['socket']
         BaseConnector.VK_CONFIG = config['vk']
 
@@ -56,7 +57,7 @@ class BaseConnector:
         self.tasks_buffer = []
         self.timeout = 10
 
-        self.last_response_time = None
+        self.last_response_time = time.time()
 
         self.request_ids = []
         self.responses = []
@@ -128,7 +129,7 @@ class BaseConnector:
 
         return None
 
-    def add_task(self, task, args=None, kwargs=None, timeout=20):
+    def add_task(self, task, args=None, kwargs=None, timeout=10):
 
         if args is None:
             args = []

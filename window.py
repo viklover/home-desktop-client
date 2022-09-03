@@ -1,9 +1,8 @@
 
-import os
 import json
 import datetime
 
-from PyQt5 import QtCore
+from PyQt5 import QtGui
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QMainWindow, QAction, QWidget
@@ -11,10 +10,12 @@ from PyQt5.QtWidgets import QMainWindow, QAction, QWidget
 from controller import Controller
 from objects import ObjectManager
 
+from path import path_to
+
 
 class Window(QMainWindow):
 
-    CONFIG = json.load(open(os.path.join("configs", "window.json")))
+    CONFIG = json.load(open(path_to("configs", "window.json")))
 
     SHUTDOWN = False
 
@@ -33,6 +34,7 @@ class Window(QMainWindow):
         self.object_manager = ObjectManager(self)
 
         self.setWindowTitle("Home")
+        self.setWindowIcon(QtGui.QIcon(path_to('configs', 'pictures', 'icon.ico')))
         self.setMinimumSize(*Window.CONFIG['size'])
 
         self.statusBar().showMessage('Запуск...')
@@ -60,7 +62,11 @@ class Window(QMainWindow):
 
     def process_events(self, event):
         self.object_manager.process_event(event['content'])
-        self.show_message(f'Обновлено - {datetime.datetime.fromtimestamp(event["content"]["time"]).strftime("%H:%M:%S")} ({self.controller.event_manager.current_connector.name})')
+
+        strf_time = datetime.datetime.fromtimestamp(event["content"]["time"]).strftime("%H:%M:%S")
+        connector_name = self.controller.event_manager.current_connector.name
+        self.show_message(f'Обновлено - {strf_time} ({connector_name})')
+
         self.update()
 
     def init_object_values(self, data):
