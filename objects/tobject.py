@@ -39,7 +39,8 @@ class TObject(Object):
             self.status = event['status']
             self.update_pyqt_object()
 
-            play_track(self.tracks[int(self.status)])
+            if not self.window.AUDIO_MUTED:
+                play_track(self.tracks[int(self.status)])
 
     def update_pyqt_object(self):
 
