@@ -284,5 +284,8 @@ configs/tracks/*
 .idea/*
 
 *.exe
+*.bat
+collect
+installer_config.iss
 
 !.gitkeep
