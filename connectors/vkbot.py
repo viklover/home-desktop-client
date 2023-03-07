@@ -40,7 +40,7 @@ class VkConnector(BaseConnector):
 
                 except json.decoder.JSONDecodeError:
                     print('error json')
-                except ZeroDivisionError:
+                except:
                     self.connector.connected = False
 
     def __init__(self, controller):
@@ -91,7 +91,7 @@ class VkConnector(BaseConnector):
                 message=json.dumps(task),
                 random_id=random.randint(1, 121212)
             )
-        except ZeroDivisionError:
+        except:
             self.connected = False
 
         return True
