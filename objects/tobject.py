@@ -25,11 +25,10 @@ class TObject(Object):
     def init_pyqt_object(self, config, object_type='label'):
         pyqt_obj = None
 
-        match object_type:
-            case 'labels':
-                pyqt_obj = Label(self.widget, config, default_text='Off')
-            case 'pictures':
-                pyqt_obj = Picture(self.widget, config)
+        if object_type == 'labels':
+            pyqt_obj = Label(self.widget, config, default_text='Off')
+        elif object_type == 'pictures':
+            pyqt_obj = Picture(self.widget, config)
 
         self.set_pyqt_object(pyqt_obj)
 

@@ -14,7 +14,6 @@ class Label:
         self.body = QLabel(widget)
         self.body.setFont(QFont(*config['font']))
         self.body.setGeometry(*config['position'], 1400, int(config['font'][1]*2))
-        self.body.setStyleSheet("background-color: none; color: black;")
 
         if 'text' in config:
             self.body.setText(config['text'])

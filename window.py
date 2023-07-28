@@ -36,6 +36,8 @@ class Window(QMainWindow):
         self.setWindowTitle("Home")
         self.setWindowIcon(QtGui.QIcon(path_to('configs', 'pictures', 'icon.ico')))
         self.setMinimumSize(*Window.CONFIG['size'])
+        
+        self.setStyleSheet("background-color: white; color: black;")
 
         self.statusBar().showMessage('Запуск...')
 
